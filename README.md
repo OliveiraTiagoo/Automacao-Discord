@@ -2,6 +2,7 @@
 
 Uma automação simples em Python que recebe uma mensagem pelo terminal e a envia para um canal do Discord usando um webhook.
 
+
 ## Pré-requisitos
 
 - Python 3
@@ -23,9 +24,6 @@ pip install requests python-dotenv
 ```
 
 ## Configuração do webhook
-
-
-
 
 Crie um arquivo chamado `.env` na raiz do projeto e adicione a URL completa do seu webhook:
 
