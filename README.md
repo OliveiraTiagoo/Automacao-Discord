@@ -24,6 +24,9 @@ pip install requests python-dotenv
 
 ## Configuração do webhook
 
+
+
+
 Crie um arquivo chamado `.env` na raiz do projeto e adicione a URL completa do seu webhook:
 
 ```env
