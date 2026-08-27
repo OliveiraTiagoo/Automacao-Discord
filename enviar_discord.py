@@ -3,9 +3,9 @@ import requests
 import streamlit as st
 from dotenv import load_dotenv
 
-def __main__():
+def send_message_to_discord(msg):
     load_dotenv()
-
+    
     webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
 
     if webhook_url:
@@ -27,14 +27,20 @@ def __main__():
             if resposta.status_code == 204:
                 st.success('Mensagem enviada com sucesso!')
             else:
-                st.error(f'Erro ao enviar a mensagem. Código: {resposta.status_code}')
+                logErro('Erro ao enviar a mensagem', f'Código: {resposta.status_code}')
 
         except requests.exceptions.RequestException as erro:
-            st.error(f'Não foi possivel conectar ao Discord: {erro}')
+            logErro('Não foi possivel conectar ao Discord', erro)
 
+def logErro(mensagem, erro):
+    st.error(f'{mensagem}: {erro}')
+    print(f'{mensagem}: {erro}')
 
-st.title("Enviar Mensagem para o Discord")
-msg = st.text_area("Digite a mensagem para enviar ao Discord:")
-msg = msg.strip()
+if __name__ == "__main__":
+    st.title("Enviar Mensagem para o Discord")
+    msg = st.text_area("Digite a mensagem para enviar ao Discord:")
+    msg = msg.strip()
+    print(msg)
 
-st.button("Enviar", on_click=__main__)
+    st.button("Enviar", on_click=send_message_to_discord, args=(msg,))
+    
